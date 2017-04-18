@@ -1,0 +1,112 @@
+[
+    {
+        "question": "main() {\n char s[]=\"man\";\n int i; for(i=0;s[i];i++) \n printf(\"%c%c%c%c\",s[i],*(s+i),*(i+s),i[s]); \n}",
+        "answers": [
+            "Man",
+            "mmmm aaaa nnnn",
+            "Nnnn aaaa Mmmm",
+            "Man Man Man"
+        ],
+        "correct_answer": 1,
+        "explanation": "s[i], *(i+s), *(s+i), i[s] are all different ways of expressing the same idea. Generally array name is the base address for that array. Here s is the base address. i is the index number/displacement from the base address. So, indirecting it with * is same as s[i]. i[s] may be surprising. But in the case of C it is same as s[i]."
+    },
+    {
+        "question": "main() {\n float me = 1.1;\n double you = 1.1;\n if(me==you) printf(\"I love U\");\n else printf(\"I hate U\");\n }",
+        "answers": [
+            "I love U",
+            "I hate U",
+            "Garbage value",
+            "Compiler Error"
+        ],
+        "correct_answer": 1,
+        "explanation": "For floating point numbers (float, double, long double) the values cannot be predicted exactly. Depending on the number of bytes, the precession with of the value represented varies. Float takes 4 bytes and long double takes 10 bytes. So float stores 0.9 with less precision than long double."
+    },
+    {
+        "question": "main() {\n int static var = 5;\n printf(\"%d \",var--);\n if(var) main();\n }",
+        "answers": [
+            "Compiler Error",
+            "1 2 3 4 5",
+            "Infinite loop",
+            "5 4 3 2 1"
+        ],
+        "correct_answer": 3,
+        "explanation": "When static storage class is given, it is initialized once. The change in the value of a static variable is retained even between the function calls. Main is also treated like any other ordinary function, which can be called recursively."
+    },
+    {
+        "question": "main() {\n c[ ]={2.8,3.4,4,6.7,5};\n int j,*p=c,*q=c;\n for(j=0;j<5;j++) { printf(\" %d \",*c);\n ++q;\n } ",
+        "answers": [
+            "2.8  3.4  4  6.7",
+            "2  8  3  4  4  6  7",
+            "2  2  2  2  2  2  3  4  6  5 ",
+            "2  2  2  2  2  2  3  4  6  5  6 7 "
+        ],
+        "correct_answer": 2,
+        "explanation": "Initially pointer c is assigned to both p and q. In the first loop, since only q is incremented and not c , the value 2 will be printed 5 times. In second loop pitself is incremented. So the values 2 3 4 6 5 will be printed."
+    },
+    {
+        "question": "main() {\n extern int i;\n i=20;\n printf(\"%d\",i);\n } ",
+        "answers": [
+            "20",
+            "Error : undefined reference to `i'",
+            "Garbage Value",
+            "Infinite loopq"
+        ],
+        "correct_answer": 1,
+        "explanation": "extern storage class in the following declaration, extern int i; specifies to the compiler that the memory for i is allocated in some other program and that address will be given to the current program at the time of linking. But linker finds that no other variable of name iis available in any other program with memory space allocated for it. Hence a linker error has occured ."
+    },
+    {
+        "question": "main() {\n int i=-1,j=-1,k=0,l=2,m;\n m=i++&&j++&&k++||l++;\n printf(\"%d %d %d %d %d\",i,j,k,l,m);\n } ",
+        "answers": [
+            "2 2 1 3 1",
+            "1 1 0 2 0",
+            "0 0 1 3 1",
+            "0 0 1 3 0"
+        ],
+        "correct_answer": 2,
+        "explanation": "Logical operations always give a result of 1 or 0 . And also the logical AND (&&) operator has higher priority over the logical OR (||) operator. So the expression ‘i++ && j++ && k++’ is executed first. The result of this expression is 0 (-1 && -1 && 0 = 0). Now the expression is 0 || 2 which evaluates to 1 (because OR operator always gives 1 except for ‘0 || 0’ combination- for which it gives 0). So the value of m is 1. The values of other variables are also incremented by 1."
+    },
+    {
+        "question": " main() {\n printf(\"%x\",-1<<4);\n } ",
+        "answers": [
+            "10",
+            "fffffffe",
+            "fffffff0",
+            "ffffffe0"
+        ],
+        "correct_answer": 2,
+        "explanation": " -1 is internally represented as all 1's. When left shifted four times the least significant 4 bits are filled with 0's.The %x format specifier specifies that the integer value be printed as a hexadecimal value."
+    },
+    {
+        "question": "main() {\n int i=10;\n i=!i>14;\n printf(\"i=%d\",i);\n } ",
+        "answers": [
+            "i=0",
+            "i=10",
+            "i= 1",
+            "Error"
+        ],
+        "correct_answer": 0,
+        "explanation": "In the expression !i>14 , NOT (!) operator has more precedence than ‘ >’ symbol. !is a unary logical operator. !i (!10) is 0 (not of true is false). 0>14 is false (zero)."
+    },
+    {
+        "question": "main() {\n char s[]={'a','b','c','\n','c','\0'};\n char *p,*str,*str1;\n p=&s[3];\n str=p;\n str1=s;\n printf(\"%d\",++*p + ++*str1-32);\n }",
+        "answers": [
+            "10",
+            "11",
+            "98",
+            "77"
+        ],
+        "correct_answer": 3,
+        "explanation": "p is pointing to character '\n'. str1 is pointing to character 'a' ++*p. \"pispointingto'\n'andthatisincrementedbyone.\" the ASCII value of '\n' is 10, which is then incremented to 11. The value of ++*p is 11. ++*str1, str1 is pointing to 'a' that is incremented by 1 and it becomes 'b'. ASCII value of 'b' is 98."
+    },
+    {
+        "question": "#define square(x) x*x \n main() {\n int i;\n i = 64/square(4);\n printf(\"%d\",i);\n }",
+        "answers": [
+            "4",
+            "64",
+            "16",
+            "0"
+        ],
+        "correct_answer": 1,
+        "explanation": "the macro call square(4) will substituted by 4*4 so the expression becomes i = 64/4*4 . Since / and * has equal priority the expression will be evaluated as (64/4)*4 i.e. 16*4 = 64"
+    }
+]
