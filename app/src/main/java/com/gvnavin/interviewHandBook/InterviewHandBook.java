@@ -10,6 +10,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.gvnavin.interviewHandBook.R;
+import com.bugsnag.android.Bugsnag;
 
 public class InterviewHandBook extends Application {
 
@@ -19,6 +20,8 @@ public class InterviewHandBook extends Application {
 	@Override
 	public void onCreate() {
 		mContext = InterviewHandBook.this;
+		Bugsnag.init(this);
+        Bugsnag.notify(new RuntimeException("Non-fatal"));
 		try {
 			extractQuestions();
 		} catch (IOException e) {

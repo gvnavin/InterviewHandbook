@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 24
     buildToolsVersion "25.0.0"
 
     defaultConfig {
@@ -24,4 +24,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/commons-io-2.4-sources.jar')
     compile files('libs/commons-io-2.4.jar')
+    //https://stackoverflow.com/questions/16682847/how-to-manually-include-external-aar-package-using-new-gradle-android-build-syst
+    compile project(':bugsnag-android')
 }
